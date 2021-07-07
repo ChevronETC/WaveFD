@@ -759,6 +759,9 @@ __attribute__((target_clones("avx","avx2","avx512f","default")))
             delete [] tmp_nlf;
             delete [] tmp_adj;
         } // end parallel region
+
+        fftwf_destroy_plan(planForward);
+        fftwf_destroy_plan(planInverse);
     }
 
     template<class Type>
