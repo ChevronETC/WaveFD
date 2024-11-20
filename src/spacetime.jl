@@ -1092,7 +1092,7 @@ function blocking(points::Vector{T}, by, nthreads=Sys.CPU_THREADS) where T <: So
     # This enables threading over partitions without race conditions. Note tha points that occupy the same
     # finie-difference-grid point will be adjacent in "points" due to the above sort.
     npartitions = min(nthreads, length(points))
-    npartitions >= 1 || error("max(nthreads, length(points)) must be greater than zero, nthreads=$nthreads, length(points)=$(length(points))")
+    npartitions >= 1 || error("min(nthreads, length(points)) must be greater than zero, nthreads=$nthreads, length(points)=$(length(points))")
 
     nominal_points_per_partition,r = divrem(length(points), npartitions)
     if r > 0
