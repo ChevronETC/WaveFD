@@ -2,6 +2,7 @@ function setup_q_profile_2D_serial!(w_inv_q::Array{T,2}, freesurface::Bool, nspo
     dt::T, q_freq::T, q_min::T, q_interior::T) where T<:Float32
     # check for unphysical q pairing
     if (q_min < eps(T)) && (q_interior < eps(T))
+        @info "q_min & q_interior set to less than machine epsilon; setting wOverQ to zero"
         w_inv_q .= zero(T)
         return
     end
@@ -48,6 +49,7 @@ function setup_q_profile_2D_threaded!(w_inv_q::Array{T,2}, freesurface, nsponge:
         dt::T, q_freq::T, q_min::T, q_interior::T) where T<:Float32
     # check for unphysical q pairing
     if (q_min < eps(T)) && (q_interior < eps(T))
+        @info "q_min & q_interior set to less than machine epsilon; setting wOverQ to zero"
         w_inv_q .= zero(T)
         return
     end
@@ -76,6 +78,7 @@ function setup_q_profile_3D_serial!(w_inv_q::Array{T,3}, freesurface::Bool, nspo
     dt::T, q_freq::T, q_min::T, q_interior::T) where T<:Float32
     # check for unphysical q pairing
     if (q_min < eps(T)) && (q_interior < eps(T))
+        @info "q_min & q_interior set to less than machine epsilon; setting wOverQ to zero"
         w_inv_q .= zero(T)
         return
     end
@@ -113,6 +116,7 @@ function setup_q_profile_3D_threaded!(w_inv_q::Array{T,3}, freesurface, nsponge:
 
     # check for unphysical q pairing
     if (q_min < eps(T)) && (q_interior < eps(T))
+        @info "q_min & q_interior set to less than machine epsilon; setting wOverQ to zero"
         w_inv_q .= zero(T)
         return
     end
